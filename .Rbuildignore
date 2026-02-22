@@ -1,0 +1,15 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.md$
+^README\.Rmd$
+^CONTRIBUTING\.md$
+^NEWS\.md$
+^LICENSE\.md$
+^\.github$
+^demo_run\.R$
+^test_cysinger\.R$
+^Cysinger\.Rcheck$
+^.*\.tar\.gz$
+^\.gitignore$
+^\.DS_Store$
+^man/figures/logo\.png$

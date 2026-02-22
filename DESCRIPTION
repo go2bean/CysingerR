@@ -1,0 +1,37 @@
+Package: Cysinger
+Title: Cysteine Scanning Mutagenesis Deep Sequencing Analysis and Visualization
+Version: 1.0.0
+Authors@R: c(
+    person("TL", "Lee", role = c("aut", "cre"), email = "tllee@example.com"),
+    person("Shruti", "Khare", role = "ctb", comment = "Original Perl pipeline"),
+    person("Raghavan", "Varadarajan", role = "ctb", comment = "Original Perl pipeline"))
+Description: A comprehensive R package for analyzing deep sequencing data from
+    cysteine scanning mutagenesis libraries. Ports and enhances the Perl pipeline
+    from Najar et al. (Structure, 2017) and provides publication-quality
+    visualization functions for mapping protein binding sites and conformational
+    epitopes. Features include FASTQ processing, quality filtering, read
+    demultiplexing, pairwise alignment, substitution analysis, cysteine
+    frequency quantification, normalization, and rich ggplot2-based figures.
+License: MIT + file LICENSE
+URL: https://github.com/go2bean/CysingerR
+BugReports: https://github.com/go2bean/CysingerR/issues
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.3
+Depends: R (>= 4.0.0)
+Imports:
+    ggplot2 (>= 3.4.0),
+    dplyr,
+    tidyr,
+    patchwork,
+    scales,
+    rlang,
+    stats,
+    utils
+Suggests:
+    Biostrings,
+    ShortRead,
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,32 @@
+# R package build artifacts
+*.tar.gz
+*.Rcheck/
+*.Rproj.user
+.Rhistory
+.Rdata
+.RData
+.httr-oauth
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Byte-compiled files
+*.pyc
+__pycache__/
+
+# Build/check directories
+src/*.o
+src/*.so
+src/*.dll
+
+# Temporary files
+*.tmp
+*.bak
+
+# Output files from demo runs
+Rplots.pdf

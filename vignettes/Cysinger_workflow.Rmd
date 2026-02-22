@@ -1,0 +1,171 @@
+---
+title: "Cysteine Scanning Mutagenesis Analysis with Cysinger"
+author: "TL Lee"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Cysteine Scanning Mutagenesis Analysis with Cysinger}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 12,
+  fig.height = 6,
+  dpi = 150,
+  warning = FALSE,
+  message = FALSE
+)
+library(Cysinger)
+library(ggplot2)
+```
+
+## Introduction
+
+**Cysinger** is an R package for analyzing deep sequencing data from cysteine
+scanning mutagenesis libraries. It ports and enhances the Perl pipeline from
+[Najar et al., *Structure* 2017](https://doi.org/10.1016/j.str.2016.12.016).
+
+The package provides:
+
+1. **Complete analysis pipeline** — from raw FASTQ to normalized cysteine
+   enrichment data
+2. **Publication-quality visualizations** — heatmaps, enrichment plots,
+   mutation landscapes, QC dashboards, and epitope mapping figures
+
+## Example Data: CcdB Protein
+
+The package includes sample data from the CcdB cysteine scanning library
+(101 residues, 306 nucleotides, 4 sorting bins).
+
+```{r load-data}
+# Load the built-in residue-level cysteine frequency data
+cys_data <- load_example_data("residue_level")
+head(cys_data)
+```
+
+```{r wt-info}
+# Wild-type sequences
+cat("WT Nucleotide (first 60 nt):", substr(ccdB_wt_nucleotide(), 1, 60), "...\n")
+cat("WT Protein:", ccdB_wt_protein(), "\n")
+```
+
+## Normalization
+
+Calculate enrichment ratios (sorted bins vs input library):
+
+```{r normalize}
+cys_norm <- normalize_cys_frequency(cys_data, input_bin = 1, sorted_bins = 2:4)
+head(cys_norm[, c("position", "wt_residue", "enrichment_bin_2",
+                   "enrichment_bin_3", "enrichment_bin_4")])
+```
+
+## Visualization Gallery
+
+### 1. Cysteine Frequency Heatmap
+
+```{r heatmap, fig.height=4}
+plot_cys_heatmap(
+  cys_data,
+  bin_labels = c("Input", "Unsorted", "Low Sort", "High Sort"),
+  title = "CcdB Cysteine Substitution Frequency"
+)
+```
+
+### 2. Enrichment Bar Plot
+
+```{r barplot, fig.height=5}
+plot_cys_enrichment(
+  cys_data,
+  bin_labels = c("Input", "Unsorted", "Low Sort", "High Sort"),
+  title = "Cysteine Read Counts by Position and Bin"
+)
+```
+
+### 3. Mutation Landscape (Lollipop Plot)
+
+```{r landscape, fig.height=5}
+plot_mutation_landscape(
+  cys_data,
+  bin_to_plot = 4,
+  bin_label = "High Sort",
+  title = "CcdB Cysteine Mutation Landscape"
+)
+```
+
+### 4. Epitope Mapping Profile
+
+The key figure for identifying conformational epitopes:
+
+```{r epitope, fig.height=5}
+plot_epitope_profile(
+  cys_norm,
+  bin_labels = c("Unsorted", "Low Sort", "High Sort"),
+  smooth = TRUE,
+  span = 0.2,
+  highlight_regions = list(
+    list(start = 20, end = 30, label = "Loop 1"),
+    list(start = 55, end = 65, label = "Active Site"),
+    list(start = 90, end = 101, label = "C-terminal")
+  ),
+  title = "CcdB Conformational Epitope Mapping"
+)
+```
+
+### 5. Surface Accessibility Radar
+
+```{r radar, fig.height=7, fig.width=7}
+plot_surface_accessibility(
+  cys_norm,
+  enrichment_bin = 4,
+  title = "CcdB Surface Accessibility"
+)
+```
+
+### 6. QC Dashboard
+
+```{r qc, fig.height=8, fig.width=12}
+plot_qc_summary(
+  cys_data,
+  bin_labels = c("Input", "Unsorted", "Low Sort", "High Sort"),
+  title = "CcdB Deep Sequencing QC"
+)
+```
+
+### 7. Mutation Classification Donut
+
+```{r donut, fig.height=6, fig.width=6}
+# Using mock classification data for demonstration
+mock_class <- data.frame(
+  class = c("wt", "single", "double", "triple", "multi"),
+  count = c(45000, 28000, 8500, 2100, 1400),
+  fraction = c(0.529, 0.329, 0.100, 0.025, 0.016)
+)
+plot_mutation_class_donut(mock_class, title = "CcdB Mutation Classification")
+```
+
+## Pipeline Overview
+
+The full pipeline processes raw FASTQ data through these steps:
+
+| Step | Function | Perl Origin |
+|------|----------|-------------|
+| 1 | `filter_fastq_reads()` | `initial_filter_fwd/rev.pl` |
+| 2 | `demultiplex_reads()` | `bin_all_fwd/rev.pl` |
+| 3 | `quality_filter_reads()` | `filter_scores_Q20.pl` |
+| 4 | `reads_to_fasta()` | `Convert2Fasta.pl`, `revComp_Convert2Fasta.pl` |
+| 5 | `align_to_reference()` | `run_water_fwd/rev.pl` |
+| 6 | `combine_paired_reads()` | `combine_all.pl` |
+| 7 | `build_substitution_table()` | `get_substitution_table.pl` |
+| 8 | `classify_mutations()` | `classify_substitutions.pl` |
+| 9 | `calculate_cys_frequency()` | `get_CYS_freq.pl` |
+| 10 | `aggregate_cys_residue_level()` | `get_CYS_freq_reslevel.pl` |
+| 11 | `normalize_cys_frequency()` | Manual normalization step |
+
+## Session Info
+
+```{r session}
+sessionInfo()
+```
