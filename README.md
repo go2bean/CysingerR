@@ -1,4 +1,4 @@
-# Cysinger <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# CysingerR <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://img.shields.io/badge/R--CMD--check-passing-brightgreen)](https://github.com/go2bean/CysingerR)
@@ -6,7 +6,7 @@
 [![R ≥ 4.0.0](https://img.shields.io/badge/R-%E2%89%A5%204.0.0-blue)](https://cran.r-project.org/)
 <!-- badges: end -->
 
-**Cysinger** is an R package for analyzing deep sequencing data from **cysteine scanning mutagenesis** libraries. It ports and enhances the [original Perl pipeline](https://github.com/Bhatt-Lab/cys_library_analysis) from [Najar et al. (*Structure*, 2017)](https://doi.org/10.1016/j.str.2017.06.015) into a single, easy-to-use R package with publication-quality visualizations.
+**CysingerR** is an R package for analyzing deep sequencing data from **cysteine scanning mutagenesis** libraries. It ports and enhances the [original Perl pipeline](https://github.com/Bhatt-Lab/cys_library_analysis) from [Najar et al. (*Structure*, 2017)](https://doi.org/10.1016/j.str.2017.06.015) into a single, easy-to-use R package with publication-quality visualizations.
 
 ## Overview
 
@@ -17,7 +17,7 @@ Cysteine scanning mutagenesis systematically replaces each amino acid in a prote
 - 🏗️ **Structural topology** — determine surface accessibility without crystallography
 - 🧬 **Protein engineering** — identify permissive sites for modifications
 
-Cysinger provides the complete computational pipeline: from raw FASTQ reads to normalized enrichment ratios and publication-ready figures.
+CysingerR provides the complete computational pipeline: from raw FASTQ reads to normalized enrichment ratios and publication-ready figures.
 
 ## Installation
 
