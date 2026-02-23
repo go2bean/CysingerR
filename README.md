@@ -12,8 +12,8 @@
 
 Cysteine scanning mutagenesis systematically replaces each amino acid in a protein with cysteine, then uses thiol-reactive fluorescent probes and FACS sorting to identify **surface-exposed** vs. **buried** residues. This technique enables:
 
-- 🎯 **Conformational epitope mapping** — identify where antibodies bind
-- 💊 **Drug target surface mapping** — find druggable pockets
+- 🎯 **Conformational epitope mapping** — identify where antibodies bind. The method can identify immunodominant regions on pathogen antigens — the regions that elicit the strongest antibody responses. This is directly useful for rational vaccine design, as it reveals which epitopes are preferentially targeted by the immune system.
+- 💊 **For antibody drug development** - Knowing the precise epitope of a therapeutic antibody is essential for intellectual property protection, understanding mechanism of action, and predicting potential escape mutations. This method provides single-residue epitope mapping without requiring co-crystal structures, which are expensive and time-consuming to obtain. It can rapidly characterize panels of candidate antibodies and group them by epitope, facilitating selection of antibodies targeting distinct sites for combination therapies.
 - 🏗️ **Structural topology** — determine surface accessibility without crystallography
 - 🧬 **Protein engineering** — identify permissive sites for modifications
 
