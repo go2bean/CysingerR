@@ -6,7 +6,7 @@
 [![R ≥ 4.0.0](https://img.shields.io/badge/R-%E2%89%A5%204.0.0-blue)](https://cran.r-project.org/)
 <!-- badges: end -->
 
-**CysingerR** is an R package for analyzing deep sequencing data from **cysteine scanning mutagenesis** libraries. A tool that uses cysteine as a molecular probe to "sing out" which positions are on a protein's surface. It ports and enhances the [original Perl pipeline](https://github.com/Bhatt-Lab/cys_library_analysis) from [Najar et al. (*Structure*, 2017)](https://doi.org/10.1016/j.str.2017.06.015) into a single, easy-to-use R package with publication-quality visualizations.
+**CysingerR** is an R package for analyzing deep sequencing data from **cysteine scanning mutagenesis** libraries. A tool that uses cysteine as a molecular probe to "sing out" which positions are on a protein's surface. It ports and enhances the [original Perl pipeline](https://github.com/skshrutikhare/cys_library_analysis) from [Najar et al. (*Structure*, 2017)](https://doi.org/10.1016/j.str.2017.06.015) into a single, easy-to-use R package with publication-quality visualizations.
 
 ## Overview
 
